@@ -1,450 +1,327 @@
 
 <x-guest-layout>
-    <div class="auth-page">
 
-        {{-- PANEL KIRI --}}
-        <div class="auth-side"
-            style="
-                background:
-                    linear-gradient(rgba(5,46,22,.86), rgba(5,46,22,.82)),
-                    url('https://images.unsplash.com/photo-1592841200221-a6898f307baa?q=80&w=1600&auto=format&fit=crop');
-                background-position: center;
-                background-size: cover;
-                color: white;
-            ">
+    <div class="min-h-screen grid lg:grid-cols-2 bg-white">
 
-            <div class="auth-side-content">
+        {{-- LEFT PANEL WITH AGRICULTURE IMAGE --}}
+        <div class="hidden lg:flex relative flex-col justify-between p-12 xl:p-16 overflow-hidden">
 
-                <div class="auth-brand">
-                    <div class="auth-brand-icon">
-                        <i class="fa-solid fa-seedling"></i>
-                    </div>
+            <img
+                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85"
+                alt="Area pertanian"
+                class="absolute inset-0 w-full h-full object-cover">
 
-                    <div>
-                        <div class="auth-brand-name" style="color:white">
-                            SIBUCARA PRO
-                        </div>
-                        <div style="font-size:12px; color:#bbf7d0; letter-spacing:1px">
-                            SISTEM INFORMASI BUDIDAYA CABAI RAWIT
-                        </div>
-                    </div>
+            <div class="absolute inset-0 bg-gradient-to-br from-green-950/95 via-green-900/85 to-green-800/75"></div>
+
+            {{-- BRAND --}}
+            <a href="{{ url('/') }}" class="relative z-10 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-white/15 backdrop-blur flex items-center justify-center text-2xl">
+                    🌿
                 </div>
 
-                <div style="margin-bottom:25px">
-                    <span style="
-                        display:inline-block;
-                        padding:9px 15px;
-                        border-radius:30px;
-                        background:rgba(255,255,255,.12);
-                        border:1px solid rgba(255,255,255,.2);
-                        color:#dcfce7;
-                        font-size:12px;
-                    ">
-                        <i class="fa-solid fa-circle mr-2" style="font-size:8px"></i>
-                        Pertanian Modern dan Terintegrasi
-                    </span>
-                </div>
+                <span class="text-2xl font-extrabold text-white">
+                    SIBUCARA<span class="text-green-300">PRO</span>
+                </span>
+            </a>
 
-                <h1 style="color:white">
-                    Kelola Budidaya Cabai Rawit dengan Lebih
-                    <span style="color:#86efac">Cerdas.</span>
+            {{-- DESCRIPTION --}}
+            <div class="relative z-10 max-w-lg text-white">
+
+                <span class="inline-flex px-4 py-2 rounded-full bg-white/15 text-green-100 text-sm font-semibold backdrop-blur">
+                    Bergabung Bersama SIBUCARA PRO
+                </span>
+
+                <h1 class="mt-7 text-4xl xl:text-5xl font-extrabold leading-tight">
+                    Kelola Budidaya Cabai Rawit dengan
+                    <span class="text-green-300">Lebih Cerdas.</span>
                 </h1>
 
-                <p style="color:#dcfce7">
-                    Bergabunglah dengan SIBUCARA PRO untuk mengelola
-                    aktivitas pertanian, memantau pekerjaan, mencatat
-                    hasil panen, dan mengembangkan usaha pertanian
-                    secara lebih terstruktur.
+                <p class="mt-6 text-green-50/90 leading-relaxed text-lg">
+                    Bergabunglah dan mulai kelola kegiatan budidaya cabai rawit
+                    melalui sistem informasi yang terintegrasi.
                 </p>
 
-                <div class="auth-benefits">
+                <div class="mt-10 space-y-6">
 
-                    <div class="auth-benefit" style="color:#f0fdf4">
-                        <i class="fa-solid fa-chart-line"></i>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-white/15 flex items-center justify-center text-2xl">
+                            🌱
+                        </div>
                         <div>
-                            <strong>Monitoring Pertanian</strong>
-                            <div style="color:#bbf7d0;font-size:12px">
-                                Pantau perkembangan budidaya cabai rawit.
-                            </div>
+                            <h3 class="font-bold">Kelola Budidaya</h3>
+                            <p class="text-sm text-green-100/80 mt-1">
+                                Pengelolaan kegiatan pertanian lebih terstruktur.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="auth-benefit" style="color:#f0fdf4">
-                        <i class="fa-solid fa-users"></i>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-white/15 flex items-center justify-center text-2xl">
+                            📊
+                        </div>
                         <div>
-                            <strong>Manajemen Pekerja</strong>
-                            <div style="color:#bbf7d0;font-size:12px">
-                                Atur tugas dan aktivitas pekerja pertanian.
-                            </div>
+                            <h3 class="font-bold">Pantau Perkembangan</h3>
+                            <p class="text-sm text-green-100/80 mt-1">
+                                Pantau aktivitas dan perkembangan tanaman.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="auth-benefit" style="color:#f0fdf4">
-                        <i class="fa-solid fa-boxes-stacked"></i>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-white/15 flex items-center justify-center text-2xl">
+                            👥
+                        </div>
                         <div>
-                            <strong>Pencatatan Hasil Panen</strong>
-                            <div style="color:#bbf7d0;font-size:12px">
-                                Kelola stok, panen, penjualan, dan keuangan.
-                            </div>
+                            <h3 class="font-bold">Kolaborasi Tim</h3>
+                            <p class="text-sm text-green-100/80 mt-1">
+                                Hubungkan pemilik, mandor, dan pekerja.
+                            </p>
                         </div>
                     </div>
 
                 </div>
-
-                <div style="margin-top:55px;font-size:12px;color:#bbf7d0">
-                    © {{ date('Y') }} SIBUCARA PRO. All rights reserved.
-                </div>
-
             </div>
+
+            <p class="relative z-10 text-sm text-green-100/70">
+                © {{ date('Y') }} SIBUCARA PRO
+            </p>
         </div>
 
+        {{-- RIGHT PANEL --}}
+        <div class="flex items-center justify-center px-5 py-12 sm:px-10 lg:px-12">
 
-        {{-- PANEL KANAN --}}
-        <div class="auth-main">
+            <div class="w-full max-w-lg">
 
-            <div class="auth-card">
+                {{-- MOBILE LOGO --}}
+                <a href="{{ url('/') }}" class="lg:hidden flex items-center justify-center gap-2 mb-9">
+                    <span class="text-2xl">🌿</span>
+                    <span class="text-xl font-extrabold text-slate-800">
+                        SIBUCARA<span class="text-[#288140]">PRO</span>
+                    </span>
+                </a>
 
-                {{-- LOGO MOBILE --}}
-                <div class="auth-brand" style="margin-bottom:35px">
-                    <div class="auth-brand-icon">
-                        <i class="fa-solid fa-seedling"></i>
-                    </div>
-
-                    <div>
-                        <div class="auth-brand-name">
-                            SIBUCARA <span class="auth-green">PRO</span>
-                        </div>
-                        <div style="font-size:10px;color:#64748b">
-                            SISTEM INFORMASI BUDIDAYA CABAI RAWIT
-                        </div>
-                    </div>
-                </div>
-
-                {{-- HEADER --}}
-                <div style="margin-bottom:25px">
-
-                    <div class="auth-badge">
-                        <i class="fa-solid fa-user-plus"></i>
-                        PENDAFTARAN PENGGUNA
-                    </div>
-
-                    <h2 class="auth-title">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-extrabold text-slate-900">
                         Buat Akun Baru
                     </h2>
 
-                    <p class="auth-description">
-                        Lengkapi informasi berikut untuk membuat akun SIBUCARA PRO.
+                    <p class="mt-3 text-slate-500">
+                        Lengkapi informasi berikut untuk mendaftar ke SIBUCARA PRO.
                     </p>
-
                 </div>
 
-
-                {{-- VALIDATION ERRORS --}}
-                @if ($errors->any())
-                    <div style="
-                        margin-bottom:20px;
-                        padding:15px;
-                        border:1px solid #fecaca;
-                        background:#fef2f2;
-                        border-radius:10px;
-                        color:#b91c1c;
-                        font-size:12px;
-                    ">
-                        <strong>
-                            <i class="fa-solid fa-circle-exclamation"></i>
-                            Terdapat kesalahan pada formulir.
-                        </strong>
-
-                        <ul style="padding-left:20px;margin-top:8px;list-style:disc">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-
-                {{-- FORM REGISTER --}}
-                <form action="{{ route('register') }}" method="POST" class="auth-form">
+                <form method="POST" action="{{ route('register') }}" class="space-y-5">
                     @csrf
 
-                    {{-- NAMA --}}
-                    <div class="auth-field">
-                        <label for="name">Nama Lengkap</label>
+                    {{-- NAME --}}
+                    <div>
+                        <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">
+                            Nama Lengkap
+                        </label>
 
-                        <div class="auth-input-wrap">
-                            <i class="fa-regular fa-user auth-input-icon"></i>
-
-                            <input
-                                type="text"
-                                name="name"
-                                id="name"
-                                value="{{ old('name') }}"
-                                class="auth-input"
-                                placeholder="Masukkan nama lengkap"
-                                autocomplete="name"
-                                required>
-                        </div>
+                        <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            value="{{ old('name') }}"
+                            required
+                            autofocus
+                            autocomplete="name"
+                            placeholder="Masukkan nama lengkap"
+                            class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-[#288140] focus:ring-2 focus:ring-green-100 outline-none transition">
 
                         @error('name')
-                            <div class="auth-error">{{ $message }}</div>
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
-
 
                     {{-- EMAIL --}}
-                    <div class="auth-field">
-                        <label for="email">Alamat Email</label>
+                    <div>
+                        <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">
+                            Alamat Email
+                        </label>
 
-                        <div class="auth-input-wrap">
-                            <i class="fa-regular fa-envelope auth-input-icon"></i>
-
-                            <input
-                                type="email"
-                                name="email"
-                                id="email"
-                                value="{{ old('email') }}"
-                                class="auth-input"
-                                placeholder="contoh@email.com"
-                                autocomplete="email"
-                                required>
-                        </div>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            autocomplete="username"
+                            placeholder="nama@email.com"
+                            class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-[#288140] focus:ring-2 focus:ring-green-100 outline-none transition">
 
                         @error('email')
-                            <div class="auth-error">{{ $message }}</div>
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
+                    {{-- WHATSAPP --}}
+                    <div>
+                        <label for="phone" class="block text-sm font-semibold text-slate-700 mb-2">
+                            Nomor WhatsApp
+                        </label>
 
-                    {{-- NOMOR WHATSAPP --}}
-                    <div class="auth-field">
-                        <label for="phone">Nomor WhatsApp</label>
-
-                        <div class="auth-input-wrap">
-                            <i class="fa-brands fa-whatsapp auth-input-icon"></i>
-
-                            <input
-                                type="tel"
-                                name="phone"
-                                id="phone"
-                                value="{{ old('phone') }}"
-                                class="auth-input"
-                                placeholder="Contoh: 081234567890"
-                                autocomplete="tel"
-                                required>
-                        </div>
+                        <input
+                            id="phone"
+                            type="tel"
+                            name="phone"
+                            value="{{ old('phone') }}"
+                            placeholder="Contoh: 08xxxxxxxxxx"
+                            class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-[#288140] focus:ring-2 focus:ring-green-100 outline-none transition">
 
                         @error('phone')
-                            <div class="auth-error">{{ $message }}</div>
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
-
                     {{-- ROLE --}}
-                    <div class="auth-field">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-3">
+                            Daftar Sebagai
+                        </label>
 
-                        <label>Daftar Sebagai</label>
+                        <div class="grid grid-cols-3 gap-3">
 
-                        <div class="auth-role-list">
-
-                            <label class="auth-role">
+                            <label class="cursor-pointer">
                                 <input
                                     type="radio"
                                     name="role"
                                     value="pemilik"
-                                    {{ old('role', 'pemilik') == 'pemilik' ? 'checked' : '' }}
+                                    class="peer sr-only"
+                                    {{ old('role') == 'pemilik' ? 'checked' : '' }}
                                     required>
 
-                                <span class="auth-role-content">
-                                    <i class="fa-solid fa-house-user"></i>
-                                    <strong>Pemilik</strong>
-                                    <span>Pemilik pertanian</span>
-                                </span>
+                                <div class="h-full rounded-xl border-2 border-slate-200 bg-white p-3 text-center transition peer-checked:border-[#288140] peer-checked:bg-green-50 hover:border-green-300">
+                                    <div class="text-2xl mb-2">👨‍🌾</div>
+                                    <span class="text-xs sm:text-sm font-bold text-slate-700">Pemilik</span>
+                                </div>
                             </label>
 
-
-                            <label class="auth-role">
+                            <label class="cursor-pointer">
                                 <input
                                     type="radio"
                                     name="role"
                                     value="mandor"
+                                    class="peer sr-only"
                                     {{ old('role') == 'mandor' ? 'checked' : '' }}>
 
-                                <span class="auth-role-content">
-                                    <i class="fa-solid fa-clipboard-list"></i>
-                                    <strong>Mandor</strong>
-                                    <span>Pengawas kebun</span>
-                                </span>
+                                <div class="h-full rounded-xl border-2 border-slate-200 bg-white p-3 text-center transition peer-checked:border-[#288140] peer-checked:bg-green-50 hover:border-green-300">
+                                    <div class="text-2xl mb-2">📋</div>
+                                    <span class="text-xs sm:text-sm font-bold text-slate-700">Mandor</span>
+                                </div>
                             </label>
 
-
-                            <label class="auth-role">
+                            <label class="cursor-pointer">
                                 <input
                                     type="radio"
                                     name="role"
                                     value="pekerja"
+                                    class="peer sr-only"
                                     {{ old('role') == 'pekerja' ? 'checked' : '' }}>
 
-                                <span class="auth-role-content">
-                                    <i class="fa-solid fa-person-digging"></i>
-                                    <strong>Pekerja</strong>
-                                    <span>Pekerja kebun</span>
-                                </span>
+                                <div class="h-full rounded-xl border-2 border-slate-200 bg-white p-3 text-center transition peer-checked:border-[#288140] peer-checked:bg-green-50 hover:border-green-300">
+                                    <div class="text-2xl mb-2">🧑‍🌾</div>
+                                    <span class="text-xs sm:text-sm font-bold text-slate-700">Pekerja</span>
+                                </div>
                             </label>
 
                         </div>
 
                         @error('role')
-                            <div class="auth-error">{{ $message }}</div>
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
-
                     </div>
 
-
                     {{-- PASSWORD --}}
-                    <div class="auth-field">
-                        <label for="password">Password</label>
+                    <div x-data="{ showPassword: false }">
+                        <label for="password" class="block text-sm font-semibold text-slate-700 mb-2">
+                            Password
+                        </label>
 
-                        <div class="auth-input-wrap">
-                            <i class="fa-solid fa-lock auth-input-icon"></i>
-
+                        <div class="relative">
                             <input
-                                type="password"
-                                name="password"
                                 id="password"
-                                class="auth-input"
-                                style="padding-right:45px"
-                                placeholder="Minimal 8 karakter"
+                                :type="showPassword ? 'text' : 'password'"
+                                name="password"
+                                required
                                 autocomplete="new-password"
-                                required>
+                                placeholder="Minimal 8 karakter"
+                                class="w-full px-4 py-3.5 pr-20 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-[#288140] focus:ring-2 focus:ring-green-100 outline-none transition">
 
-                            <button
-                                type="button"
-                                class="auth-eye"
-                                onclick="togglePassword('password', 'icon-password')"
-                                aria-label="Tampilkan password">
-                                <i class="fa-regular fa-eye" id="icon-password"></i>
+                            <button type="button"
+                                @click="showPassword = !showPassword"
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400 hover:text-[#288140]">
+                                <span x-text="showPassword ? 'Sembunyikan' : 'Lihat'"></span>
                             </button>
                         </div>
 
                         @error('password')
-                            <div class="auth-error">{{ $message }}</div>
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
-
-                    {{-- KONFIRMASI PASSWORD --}}
-                    <div class="auth-field">
-                        <label for="password_confirmation">
+                    {{-- CONFIRM PASSWORD --}}
+                    <div x-data="{ showPassword: false }">
+                        <label for="password_confirmation" class="block text-sm font-semibold text-slate-700 mb-2">
                             Konfirmasi Password
                         </label>
 
-                        <div class="auth-input-wrap">
-                            <i class="fa-solid fa-lock auth-input-icon"></i>
-
+                        <div class="relative">
                             <input
-                                type="password"
-                                name="password_confirmation"
                                 id="password_confirmation"
-                                class="auth-input"
-                                style="padding-right:45px"
-                                placeholder="Masukkan ulang password"
+                                :type="showPassword ? 'text' : 'password'"
+                                name="password_confirmation"
+                                required
                                 autocomplete="new-password"
-                                required>
+                                placeholder="Ulangi password"
+                                class="w-full px-4 py-3.5 pr-20 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-[#288140] focus:ring-2 focus:ring-green-100 outline-none transition">
 
-                            <button
-                                type="button"
-                                class="auth-eye"
-                                onclick="togglePassword('password_confirmation', 'icon-confirm-password')"
-                                aria-label="Tampilkan konfirmasi password">
-                                <i class="fa-regular fa-eye" id="icon-confirm-password"></i>
+                            <button type="button"
+                                @click="showPassword = !showPassword"
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400 hover:text-[#288140]">
+                                <span x-text="showPassword ? 'Sembunyikan' : 'Lihat'"></span>
                             </button>
                         </div>
                     </div>
 
+                    {{-- TERMS --}}
+                    <div class="flex items-start gap-3">
+                        <input
+                            id="terms"
+                            type="checkbox"
+                            name="terms"
+                            value="1"
+                            required
+                            class="mt-1 w-4 h-4 rounded border-slate-300 text-[#288140] focus:ring-green-500">
 
-                    {{-- PERSETUJUAN --}}
-                    <div>
-                        <label class="auth-terms">
-                            <input
-                                type="checkbox"
-                                name="terms"
-                                value="1"
-                                {{ old('terms') ? 'checked' : '' }}
-                                required>
-
-                            <span>
-                                Saya menyetujui
-                                <a href="#" class="auth-small-link">Syarat dan Ketentuan</a>
-                                serta
-                                <a href="#" class="auth-small-link">Kebijakan Privasi</a>
-                                SIBUCARA PRO.
-                            </span>
+                        <label for="terms" class="text-sm text-slate-500 leading-relaxed">
+                            Saya menyetujui ketentuan penggunaan dan kebijakan privasi SIBUCARA PRO.
                         </label>
-
-                        @error('terms')
-                            <div class="auth-error">{{ $message }}</div>
-                        @enderror
                     </div>
 
-
-                    {{-- TOMBOL DAFTAR --}}
-                    <button type="submit" class="auth-button">
-                        <i class="fa-solid fa-user-plus"></i>
-                        &nbsp; Buat Akun Sekarang
+                    {{-- SUBMIT --}}
+                    <button type="submit"
+                        class="w-full py-4 rounded-xl bg-[#288140] text-white font-bold hover:bg-green-700 shadow-lg shadow-green-900/10 transition">
+                        Buat Akun Sekarang
                     </button>
-
-
-                    {{-- LINK LOGIN --}}
-                    <div class="auth-bottom-link">
-                        Sudah memiliki akun?
-                        <a href="{{ route('login') }}">
-                            <strong>Masuk di sini</strong>
-                        </a>
-                    </div>
 
                 </form>
 
-
-                {{-- FOOTER --}}
-                <div class="auth-note">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    Data akun Anda dilindungi oleh sistem keamanan SIBUCARA PRO.
-                </div>
-
-                <div style="
-                    text-align:center;
-                    margin-top:20px;
-                    font-size:10px;
-                    color:#94a3b8;
-                ">
-                    © {{ date('Y') }} SIBUCARA PRO
+                {{-- LOGIN LINK --}}
+                <div class="mt-7 text-center">
+                    <p class="text-sm text-slate-500">
+                        Sudah memiliki akun?
+                        <a href="{{ route('login') }}"
+                            class="font-bold text-[#288140] hover:text-green-700">
+                            Masuk di sini
+                        </a>
+                    </p>
                 </div>
 
             </div>
         </div>
 
     </div>
-
-
-    {{-- SCRIPT TAMPILKAN PASSWORD --}}
-    <script>
-        function togglePassword(inputId, iconId) {
-            const input = document.getElementById(inputId);
-            const icon = document.getElementById(iconId);
-
-            if (!input || !icon) return;
-
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                input.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
-        }
-    </script>
 
 </x-guest-layout>
