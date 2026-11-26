@@ -1,310 +1,205 @@
-
 <x-guest-layout>
 
-    <div class="auth-page">
+    <div class="min-h-screen grid lg:grid-cols-2 bg-white">
 
-        {{-- PANEL KIRI --}}
-        <div class="auth-side">
+        {{-- LEFT PANEL --}}
+        <div class="hidden lg:flex flex-col justify-between bg-[#f4f7f6] p-12 xl:p-16">
 
-            <div class="auth-side-content">
-
-                {{-- LOGO --}}
-                <div class="auth-brand">
-                    <div class="auth-brand-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-
-                    <div>
-                        <div class="auth-brand-name">
-                            SIBUCARA <span class="auth-green">PRO</span>
-                        </div>
-
-                        <div style="font-size:11px; color:#64748b; letter-spacing:1px">
-                            SISTEM INFORMASI BUDIDAYA CABAI RAWIT
-                        </div>
-                    </div>
+            <a href="{{ url('/') }}" class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-2xl">
+                    🌿
                 </div>
 
+                <span class="text-2xl font-extrabold text-slate-800">
+                    SIBUCARA<span class="text-[#288140]">PRO</span>
+                </span>
+            </a>
 
-                {{-- DESKRIPSI --}}
-                <h1>
-                    Kelola Pertanian Cabai Rawit Lebih Mudah.
+            <div class="max-w-lg">
+                <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-[#288140] text-sm font-bold">
+                    Selamat Datang Kembali
+                </span>
+
+                <h1 class="mt-7 text-4xl xl:text-5xl font-extrabold text-slate-900 leading-tight">
+                    Kelola Pertanian Cabai Rawit
+                    <span class="text-[#288140]">Lebih Mudah.</span>
                 </h1>
 
-                <p>
-                    Satu platform untuk membantu pemilik pertanian,
-                    mandor, dan pekerja mengelola kegiatan budidaya
-                    cabai rawit secara lebih profesional.
+                <p class="mt-6 text-slate-600 leading-relaxed text-lg">
+                    Masuk ke akun SIBUCARA PRO untuk mengelola dan
+                    memantau kegiatan budidaya cabai rawit.
                 </p>
 
+                <div class="mt-10 space-y-6">
 
-                {{-- FITUR --}}
-                <div class="auth-benefits">
-
-                    <div class="auth-benefit">
-                        <i class="fas fa-seedling"></i>
-
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-white shadow-sm flex items-center justify-center text-2xl">
+                            🌱
+                        </div>
                         <div>
-                            <strong>Pengelolaan Budidaya</strong>
-                            <div style="font-size:12px;color:#64748b">
-                                Pengelolaan budidaya lebih terorganisir.
-                            </div>
+                            <h3 class="font-bold text-slate-800">Pengelolaan Budidaya</h3>
+                            <p class="text-sm text-slate-500 mt-1">Kelola kegiatan pertanian lebih terstruktur.</p>
                         </div>
                     </div>
 
-
-                    <div class="auth-benefit">
-                        <i class="fas fa-chart-line"></i>
-
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-white shadow-sm flex items-center justify-center text-2xl">
+                            📊
+                        </div>
                         <div>
-                            <strong>Monitoring Pertanian</strong>
-                            <div style="font-size:12px;color:#64748b">
-                                Pantau perkembangan pertanian Anda.
-                            </div>
+                            <h3 class="font-bold text-slate-800">Pemantauan dan Laporan</h3>
+                            <p class="text-sm text-slate-500 mt-1">Pantau perkembangan dan hasil budidaya.</p>
                         </div>
                     </div>
 
-
-                    <div class="auth-benefit">
-                        <i class="fas fa-users"></i>
-
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-white shadow-sm flex items-center justify-center text-2xl">
+                            👥
+                        </div>
                         <div>
-                            <strong>Manajemen Pekerja</strong>
-                            <div style="font-size:12px;color:#64748b">
-                                Koordinasi tim pertanian lebih mudah.
-                            </div>
+                            <h3 class="font-bold text-slate-800">Kolaborasi Pengguna</h3>
+                            <p class="text-sm text-slate-500 mt-1">Menghubungkan pemilik, mandor, dan pekerja.</p>
                         </div>
                     </div>
 
                 </div>
-
-
-                {{-- FOOTER KIRI --}}
-                <div style="margin-top:55px;font-size:12px;color:#94a3b8">
-                    © {{ date('Y') }} SIBUCARA PRO. All rights reserved.
-                </div>
-
             </div>
 
+            <p class="text-sm text-slate-400">
+                © {{ date('Y') }} SIBUCARA PRO
+            </p>
         </div>
 
+        {{-- RIGHT PANEL --}}
+        <div class="flex items-center justify-center px-5 py-12 sm:px-10 lg:px-12">
 
-        {{-- PANEL KANAN --}}
-        <div class="auth-main">
+            <div class="w-full max-w-md">
 
-            <div class="auth-card">
+                {{-- MOBILE LOGO --}}
+                <a href="{{ url('/') }}" class="lg:hidden flex items-center justify-center gap-2 mb-10">
+                    <span class="text-2xl">🌿</span>
+                    <span class="text-xl font-extrabold text-slate-800">
+                        SIBUCARA<span class="text-[#288140]">PRO</span>
+                    </span>
+                </a>
 
-                {{-- LOGO MOBILE --}}
-                <div class="auth-brand" style="margin-bottom:35px">
+                <div class="mb-9">
+                    <h2 class="text-3xl font-extrabold text-slate-900">
+                        Masuk ke Akun
+                    </h2>
 
-                    <div class="auth-brand-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-
-                    <div>
-                        <div class="auth-brand-name">
-                            SIBUCARA <span class="auth-green">PRO</span>
-                        </div>
-
-                        <div style="font-size:10px;color:#64748b">
-                            SISTEM INFORMASI BUDIDAYA CABAI RAWIT
-                        </div>
-                    </div>
-
+                    <p class="mt-3 text-slate-500">
+                        Silakan masukkan email dan password untuk melanjutkan.
+                    </p>
                 </div>
 
+                {{-- SESSION STATUS --}}
+                <x-auth-session-status class="mb-5" :status="session('status')" />
 
-                {{-- HEADER LOGIN --}}
-                <div class="auth-badge">
-                    <i class="fas fa-sign-in-alt"></i>
-                    LOGIN PENGGUNA
-                </div>
-
-                <h2 class="auth-title">
-                    Selamat Datang Kembali
-                </h2>
-
-                <p class="auth-description">
-                    Masuk ke akun SIBUCARA PRO untuk melanjutkan
-                    pengelolaan pertanian Anda.
-                </p>
-
-
-                {{-- STATUS SESSION --}}
-                <x-auth-session-status
-                    class="mb-4"
-                    :status="session('status')" />
-
-
-                {{-- FORM LOGIN --}}
-                <form method="POST"
-                    action="{{ route('login') }}"
-                    class="auth-form">
-
+                {{-- LOGIN FORM --}}
+                <form method="POST" action="{{ route('login') }}" class="space-y-6">
                     @csrf
 
-
                     {{-- EMAIL --}}
-                    <div class="auth-field">
-
-                        <label for="email">
-                            Email
+                    <div>
+                        <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">
+                            Alamat Email
                         </label>
 
-                        <div class="auth-input-wrap">
-
-                            <i class="far fa-envelope auth-input-icon"></i>
-
-                            <input
-                                id="email"
-                                type="email"
-                                name="email"
-                                value="{{ old('email') }}"
-                                placeholder="Masukkan email Anda"
-                                autocomplete="username"
-                                required
-                                autofocus
-                                class="auth-input">
-
-                        </div>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            autofocus
+                            autocomplete="username"
+                            placeholder="nama@email.com"
+                            class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-[#288140] focus:ring-2 focus:ring-green-100 outline-none transition">
 
                         @error('email')
-                            <div class="auth-error">
-                                {{ $message }}
-                            </div>
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
-
                     </div>
 
-
                     {{-- PASSWORD --}}
-                    <div class="auth-field" x-data="{ showPassword: false }">
-
-                        <div class="auth-between">
-
-                            <label for="password">
+                    <div x-data="{ showPassword: false }">
+                        <div class="flex justify-between items-center mb-2">
+                            <label for="password" class="text-sm font-semibold text-slate-700">
                                 Password
                             </label>
 
                             @if (Route::has('password.request'))
-                                <a
-                                    href="{{ route('password.request') }}"
-                                    class="auth-small-link">
-                                    Lupa password?
-                                </a>
+                            <a href="{{ route('password.request') }}"
+                                class="text-sm font-semibold text-[#288140] hover:text-green-700">
+                                Lupa Password?
+                            </a>
                             @endif
-
                         </div>
 
-
-                        <div class="auth-input-wrap">
-
-                            <i class="fas fa-lock auth-input-icon"></i>
-
+                        <div class="relative">
                             <input
                                 id="password"
                                 :type="showPassword ? 'text' : 'password'"
                                 name="password"
-                                placeholder="Masukkan password Anda"
-                                autocomplete="current-password"
                                 required
-                                class="auth-input"
-                                style="padding-right:45px">
+                                autocomplete="current-password"
+                                placeholder="Masukkan password"
+                                class="w-full px-4 py-3.5 pr-14 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-[#288140] focus:ring-2 focus:ring-green-100 outline-none transition">
 
-
-                            {{-- TOGGLE PASSWORD --}}
-                            <button
-                                type="button"
-                                class="auth-eye"
+                            <button type="button"
                                 @click="showPassword = !showPassword"
-                                aria-label="Tampilkan atau sembunyikan password">
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#288140]">
 
-                                <i
-                                    :class="showPassword ? 'far fa-eye-slash' : 'far fa-eye'">
-                                </i>
-
+                                <span x-text="showPassword ? 'Sembunyikan' : 'Lihat'"
+                                    class="text-xs font-semibold"></span>
                             </button>
-
                         </div>
 
                         @error('password')
-                            <div class="auth-error">
-                                {{ $message }}
-                            </div>
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
-
                     </div>
 
+                    {{-- REMEMBER ME --}}
+                    <div class="flex items-center">
+                        <input
+                            id="remember_me"
+                            type="checkbox"
+                            name="remember"
+                            class="w-4 h-4 rounded border-slate-300 text-[#288140] focus:ring-green-500">
 
-                    {{-- INGAT SAYA --}}
-                    <div>
-
-                        <label class="auth-remember">
-
-                            <input
-                                id="remember"
-                                type="checkbox"
-                                name="remember">
-
-                            <span>
-                                Ingat saya di perangkat ini
-                            </span>
-
+                        <label for="remember_me" class="ml-3 text-sm text-slate-600">
+                            Ingat saya
                         </label>
 
                     </div>
 
-
-                    {{-- TOMBOL LOGIN --}}
-                    <button type="submit" class="auth-button">
-
+                    {{-- SUBMIT --}}
+                    <button type="submit"
+                        class="w-full py-4 rounded-xl bg-[#288140] text-white font-bold hover:bg-green-700 shadow-lg shadow-green-900/10 transition">
                         Masuk ke SIBUCARA
 
-                        <i class="fas fa-arrow-right" style="margin-left:7px"></i>
-
+                        
                     </button>
 
                 </form>
 
-
-                {{-- PEMBATAS --}}
-                <div class="auth-divider">
-                    atau
+                {{-- REGISTER LINK --}}
+                <div class="mt-8 text-center">
+                    <p class="text-sm text-slate-500">
+                        Belum memiliki akun?
+                        <a href="{{ route('register') }}"
+                            class="font-bold text-[#288140] hover:text-green-700">
+                            Daftar Sekarang
+                        </a>
+                    </p>
                 </div>
 
-
-                {{-- LINK REGISTER --}}
-                <a
-                    href="{{ route('register') }}"
-                    class="auth-bottom-link">
-
-                    Belum memiliki akun?
-
-                    <strong>
-                        Daftar sekarang
-                    </strong>
-
-                </a>
-
-
-                {{-- CATATAN KEAMANAN --}}
-                <div class="auth-note">
-
-                    <i class="fas fa-shield-alt"></i>
-
-                    Data akun Anda dilindungi oleh sistem keamanan SIBUCARA PRO.
-
-                </div>
-
-
-                {{-- FOOTER --}}
-                <div style="
-                    text-align:center;
-                    margin-top:20px;
-                    font-size:10px;
-                    color:#94a3b8;
-                ">
-                    © {{ date('Y') }} SIBUCARA PRO
+                {{-- SECURITY INFO --}}
+                <div class="mt-10 flex items-center justify-center gap-2 text-xs text-slate-400">
+                    <span>🔒</span>
+                    <span>Informasi akun Anda dilindungi oleh sistem.</span>
                 </div>
 
             </div>
