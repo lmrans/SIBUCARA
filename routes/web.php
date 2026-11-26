@@ -4,6 +4,8 @@ use App\Http\Controllers\Mandor\DashboardController as MandorDashboardController
 use App\Http\Controllers\Mandor\KegiatanController;
 use App\Http\Controllers\Pekerja\DashboardController as PekerjaDashboardController;
 use App\Http\Controllers\Pemilik\DashboardController as PemilikDashboardController;
+use App\Http\Controllers\Pemilik\PenggunaController;
+use App\Http\Controllers\Pemilik\PertanianController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +34,12 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/dashboard', [PemilikDashboardController::class, 'index'])
                 ->name('dashboard');
+
+            Route::resource('pengguna', PenggunaController::class)
+                ->only(['index', 'show', 'edit', 'update', 'destroy']);
+
+            Route::resource('pertanian', PertanianController::class)
+                ->except(['destroy']);
         });
 
     // Dashboard Mandor

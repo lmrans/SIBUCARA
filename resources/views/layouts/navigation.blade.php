@@ -15,6 +15,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @if (Auth::user()->isPemilik())
+                        <x-nav-link :href="route('pemilik.pertanian.index')" :active="request()->routeIs('pemilik.pertanian.*')">
+                            {{ __('Pertanian') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.pengguna.index')" :active="request()->routeIs('pemilik.pengguna.*')">
+                            {{ __('Pengguna') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -70,6 +79,15 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            @if (Auth::user()->isPemilik())
+                <x-responsive-nav-link :href="route('pemilik.pertanian.index')" :active="request()->routeIs('pemilik.pertanian.*')">
+                    {{ __('Pertanian') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.pengguna.index')" :active="request()->routeIs('pemilik.pengguna.*')">
+                    {{ __('Pengguna') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

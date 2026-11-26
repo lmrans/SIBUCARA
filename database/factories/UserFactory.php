@@ -26,6 +26,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'username' => fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
@@ -40,6 +41,27 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    public function pemilik(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'pemilik',
+        ]);
+    }
+
+    public function mandor(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'mandor',
+        ]);
+    }
+
+    public function pekerja(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'pekerja',
         ]);
     }
 }
