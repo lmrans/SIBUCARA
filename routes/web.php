@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Pemilik\DashboardController as PemilikDashboardController;
 use App\Http\Controllers\Mandor\DashboardController as MandorDashboardController;
+use App\Http\Controllers\Mandor\KegiatanController;
 use App\Http\Controllers\Pekerja\DashboardController as PekerjaDashboardController;
+use App\Http\Controllers\Pemilik\DashboardController as PemilikDashboardController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 // Halaman utama / Landing Page
 Route::view('/', 'welcome')->name('home');
@@ -39,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/dashboard', [MandorDashboardController::class, 'index'])
                 ->name('dashboard');
+
+            // Kegiatan budidaya
+            Route::resource('kegiatan', KegiatanController::class);
         });
 
     // Dashboard Pekerja
@@ -50,4 +54,4 @@ Route::middleware(['auth'])->group(function () {
         });
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
