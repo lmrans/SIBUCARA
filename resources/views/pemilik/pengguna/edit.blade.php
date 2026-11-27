@@ -37,15 +37,21 @@
                             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                         </div>
 
-                        <div>
-                            <x-input-label for="role" :value="__('Peran')" />
-                            <select id="role" name="role" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
-                                @foreach ($roles as $value => $label)
-                                    <option value="{{ $value }}" @selected(old('role', $user->role) === $value)>{{ $label }}</option>
-                                @endforeach
-                            </select>
-                            <x-input-error :messages="$errors->get('role')" class="mt-2" />
-                        </div>
+                        @if ($bolehUbahRole)
+                            <div>
+                                <x-input-label for="role" :value="__('Peran')" />
+                                <select id="role" name="role" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                                    @foreach ($roles as $value => $label)
+                                        <option value="{{ $value }}" @selected(old('role', $user->role) === $value)>{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('role')" class="mt-2" />
+                            </div>
+                        @else
+                            <div class="rounded-md bg-gray-50 p-4 text-sm text-gray-600">
+                                {{ __('Peran akun sendiri tidak dapat diubah.') }}
+                            </div>
+                        @endif
 
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Perbarui') }}</x-primary-button>

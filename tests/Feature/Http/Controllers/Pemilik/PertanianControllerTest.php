@@ -2,7 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers\Pemilik;
 
+use App\Models\Membership;
 use App\Models\Pertanian;
+use App\Models\Tanaman;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -122,5 +124,43 @@ class PertanianControllerTest extends TestCase
         $response = $this->actingAs($pemilik)->get(route('pemilik.pertanian.show', $pertanianLain));
 
         $response->assertNotFound();
+    }
+
+    public function test_deletes_an_empty_owned_farm(): void
+    {
+        $pemilik = User::factory()->pemilik()->create();
+        $pertanian = Pertanian::factory()->create(['pemilik_id' => $pemilik->id]);
+
+        $response = $this->actingAs($pemilik)->delete(route('pemilik.pertanian.destroy', $pertanian));
+
+        $response->assertRedirect(route('pemilik.pertanian.index'));
+        $this->assertDatabaseMissing('pertanians', ['id' => $pertanian->id]);
+    }
+
+    public function test_blocks_deleting_a_farm_that_still_has_related_data(): void
+    {
+        $pemilik = User::factory()->pemilik()->create();
+        $pertanian = Pertanian::factory()->create(['pemilik_id' => $pemilik->id]);
+        Membership::factory()->create(['pertanian_id' => $pertanian->id]);
+        Tanaman::factory()->create(['pertanian_id' => $pertanian->id]);
+
+        $response = $this->actingAs($pemilik)->delete(route('pemilik.pertanian.destroy', $pertanian));
+
+        $response
+            ->assertRedirect(route('pemilik.pertanian.index'))
+            ->assertSessionHas('error', fn (string $message): bool => str_contains($message, 'anggota')
+                && str_contains($message, 'tanaman'));
+        $this->assertDatabaseHas('pertanians', ['id' => $pertanian->id]);
+    }
+
+    public function test_returns_404_when_deleting_a_farm_owned_by_another_pemilik(): void
+    {
+        $pemilik = User::factory()->pemilik()->create();
+        $pertanianLain = Pertanian::factory()->create();
+
+        $response = $this->actingAs($pemilik)->delete(route('pemilik.pertanian.destroy', $pertanianLain));
+
+        $response->assertNotFound();
+        $this->assertDatabaseHas('pertanians', ['id' => $pertanianLain->id]);
     }
 }

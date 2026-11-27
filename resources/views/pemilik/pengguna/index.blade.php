@@ -41,11 +41,15 @@
                                             <div class="flex items-center gap-3">
                                                 <a href="{{ route('pemilik.pengguna.show', $pengguna) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('Detail') }}</a>
                                                 <a href="{{ route('pemilik.pengguna.edit', $pengguna) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('Edit') }}</a>
-                                                <form method="POST" action="{{ route('pemilik.pengguna.destroy', $pengguna) }}" onsubmit="return confirm('{{ __('Yakin ingin menghapus pengguna ini?') }}');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="text-red-600 hover:text-red-900">{{ __('Hapus') }}</button>
-                                                </form>
+                                                @if ($pengguna->id !== auth()->id())
+                                                    <form method="POST" action="{{ route('pemilik.pengguna.destroy', $pengguna) }}" onsubmit="return confirm('{{ __('Yakin ingin menghapus pengguna ini?') }}');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="text-red-600 hover:text-red-900">{{ __('Hapus') }}</button>
+                                                    </form>
+                                                @else
+                                                    <span class="text-xs text-gray-400">{{ __('Akun sendiri') }}</span>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>

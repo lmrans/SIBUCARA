@@ -13,10 +13,20 @@
                 </div>
             @endif
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            @if (session('error'))
+                <div class="rounded-md bg-red-50 p-4 text-sm text-red-700">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                     <p class="text-sm font-medium text-gray-500">{{ __('Total Pertanian') }}</p>
                     <p class="mt-2 text-2xl font-semibold text-gray-900">{{ $ringkasan['total_pertanian'] }}</p>
+                </div>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                    <p class="text-sm font-medium text-gray-500">{{ __('Lahan Aktif') }}</p>
+                    <p class="mt-2 text-2xl font-semibold text-gray-900">{{ $ringkasan['lahan_aktif'] }}</p>
                 </div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                     <p class="text-sm font-medium text-gray-500">{{ __('Total Luas Lahan') }}</p>
@@ -60,6 +70,11 @@
                                             <div class="flex items-center gap-3">
                                                 <a href="{{ route('pemilik.pertanian.show', $pertanian) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('Detail') }}</a>
                                                 <a href="{{ route('pemilik.pertanian.edit', $pertanian) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('Edit') }}</a>
+                                                <form method="POST" action="{{ route('pemilik.pertanian.destroy', $pertanian) }}" onsubmit="return confirm('{{ __('Yakin ingin menghapus pertanian ini?') }}');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-600 hover:text-red-900">{{ __('Hapus') }}</button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

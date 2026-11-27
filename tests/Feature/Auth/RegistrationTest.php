@@ -20,6 +20,7 @@ class RegistrationTest extends TestCase
     {
         $response = $this->post('/register', [
             'name' => 'Test User',
+            'username' => 'test_user',
             'email' => 'test@example.com',
             'phone' => '081234567890',
             'role' => 'mandor',
@@ -34,8 +35,26 @@ class RegistrationTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'email' => 'test@example.com',
+            'username' => 'test_user',
             'phone' => '081234567890',
             'role' => 'mandor',
         ]);
+    }
+
+    public function test_registration_requires_a_username(): void
+    {
+        $response = $this->post('/register', [
+            'name' => 'Tanpa Username',
+            'email' => 'tanpa.username@example.com',
+            'phone' => '081234567890',
+            'role' => 'mandor',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'terms' => '1',
+        ]);
+
+        $response->assertSessionHasErrors('username');
+        $this->assertGuest();
+        $this->assertDatabaseMissing('users', ['email' => 'tanpa.username@example.com']);
     }
 }

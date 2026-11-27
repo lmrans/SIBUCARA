@@ -23,6 +23,45 @@
                         <x-nav-link :href="route('pemilik.pengguna.index')" :active="request()->routeIs('pemilik.pengguna.*')">
                             {{ __('Pengguna') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('pemilik.pengajuan-mandor.index')" :active="request()->routeIs('pemilik.pengajuan-mandor.*')">
+                            {{ __('Pengajuan') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.tanaman.index')" :active="request()->routeIs('pemilik.tanaman.*')">
+                            {{ __('Tanaman') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.budidaya.index')" :active="request()->routeIs('pemilik.budidaya.*')">
+                            {{ __('Budidaya') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.jadwal.index')" :active="request()->routeIs('pemilik.jadwal.*')">
+                            {{ __('Jadwal') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.monitoring-pekerjaan.index')" :active="request()->routeIs('pemilik.monitoring-pekerjaan.*')">
+                            {{ __('Monitoring') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.panen.index')" :active="request()->routeIs('pemilik.panen.*')">
+                            {{ __('Panen') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.penjualan.index')" :active="request()->routeIs('pemilik.penjualan.*')">
+                            {{ __('Penjualan') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.keuangan.index')" :active="request()->routeIs('pemilik.keuangan.*')">
+                            {{ __('Keuangan') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.informasi-keuangan.index')" :active="request()->routeIs('pemilik.informasi-keuangan.*')">
+                            {{ __('Info Keuangan') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.laporan.index')" :active="request()->routeIs('pemilik.laporan.*')">
+                            {{ __('Laporan') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.laporan-pertanian.index')" :active="request()->routeIs('pemilik.laporan-pertanian.*')">
+                            {{ __('Laporan Pertanian') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.cuaca.index')" :active="request()->routeIs('pemilik.cuaca.*')">
+                            {{ __('Cuaca') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pemilik.notifikasi.index')" :active="request()->routeIs('pemilik.notifikasi.*')">
+                            {{ __('Notifikasi') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -86,6 +125,45 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('pemilik.pengguna.index')" :active="request()->routeIs('pemilik.pengguna.*')">
                     {{ __('Pengguna') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.pengajuan-mandor.index')" :active="request()->routeIs('pemilik.pengajuan-mandor.*')">
+                    {{ __('Pengajuan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.tanaman.index')" :active="request()->routeIs('pemilik.tanaman.*')">
+                    {{ __('Tanaman') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.budidaya.index')" :active="request()->routeIs('pemilik.budidaya.*')">
+                    {{ __('Budidaya') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.jadwal.index')" :active="request()->routeIs('pemilik.jadwal.*')">
+                    {{ __('Jadwal') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.monitoring-pekerjaan.index')" :active="request()->routeIs('pemilik.monitoring-pekerjaan.*')">
+                    {{ __('Monitoring') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.panen.index')" :active="request()->routeIs('pemilik.panen.*')">
+                    {{ __('Panen') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.penjualan.index')" :active="request()->routeIs('pemilik.penjualan.*')">
+                    {{ __('Penjualan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.keuangan.index')" :active="request()->routeIs('pemilik.keuangan.*')">
+                    {{ __('Keuangan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.informasi-keuangan.index')" :active="request()->routeIs('pemilik.informasi-keuangan.*')">
+                    {{ __('Info Keuangan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.laporan.index')" :active="request()->routeIs('pemilik.laporan.*')">
+                    {{ __('Laporan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.laporan-pertanian.index')" :active="request()->routeIs('pemilik.laporan-pertanian.*')">
+                    {{ __('Laporan Pertanian') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.cuaca.index')" :active="request()->routeIs('pemilik.cuaca.*')">
+                    {{ __('Cuaca') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemilik.notifikasi.index')" :active="request()->routeIs('pemilik.notifikasi.*')">
+                    {{ __('Notifikasi') }}
                 </x-responsive-nav-link>
             @endif
         </div>

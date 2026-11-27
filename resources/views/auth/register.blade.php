@@ -135,6 +135,27 @@
                         @enderror
                     </div>
 
+                    {{-- USERNAME --}}
+                    <div>
+                        <label for="username" class="block text-sm font-semibold text-slate-700 mb-2">
+                            Username
+                        </label>
+
+                        <input
+                            id="username"
+                            type="text"
+                            name="username"
+                            value="{{ old('username') }}"
+                            required
+                            autocomplete="username"
+                            placeholder="Masukkan username unik"
+                            class="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-[#288140] focus:ring-2 focus:ring-green-100 outline-none transition">
+
+                        @error('username')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     {{-- EMAIL --}}
                     <div>
                         <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">

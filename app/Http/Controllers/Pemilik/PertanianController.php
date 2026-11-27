@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Pemilik;
 
 use App\Http\Controllers\Controller;
+use App\Models\KegiatanBudidaya;
+use App\Models\Panen;
+use App\Models\Penjualan;
 use App\Models\Pertanian;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -25,6 +28,46 @@ class PertanianController extends Controller
         ];
     }
 
+    /**
+     * Daftar data terkait yang menghalangi penghapusan pertanian.
+     *
+     * @return array<int, string>
+     */
+    private function relatedDataLabels(Pertanian $pertanian): array
+    {
+        $terkait = [];
+
+        if ($pertanian->memberships()->exists()) {
+            $terkait[] = 'anggota';
+        }
+
+        if ($pertanian->tanamen()->exists()) {
+            $terkait[] = 'tanaman';
+        }
+
+        if ($pertanian->stoks()->exists()) {
+            $terkait[] = 'stok';
+        }
+
+        if ($pertanian->transaksiKeuangans()->exists()) {
+            $terkait[] = 'transaksi keuangan';
+        }
+
+        if (KegiatanBudidaya::whereHas('tanaman', fn ($q) => $q->where('pertanian_id', $pertanian->id))->exists()) {
+            $terkait[] = 'kegiatan budidaya';
+        }
+
+        if (Panen::whereHas('tanaman', fn ($q) => $q->where('pertanian_id', $pertanian->id))->exists()) {
+            $terkait[] = 'panen';
+        }
+
+        if (Penjualan::whereHas('panen.tanaman', fn ($q) => $q->where('pertanian_id', $pertanian->id))->exists()) {
+            $terkait[] = 'penjualan';
+        }
+
+        return $terkait;
+    }
+
     public function index(Request $request): View
     {
         $pemilikId = $request->user()->id;
@@ -39,6 +82,9 @@ class PertanianController extends Controller
         $ringkasan = [
             'total_pertanian' => Pertanian::where('pemilik_id', $pemilikId)->count(),
             'total_luas' => Pertanian::where('pemilik_id', $pemilikId)->sum('luas_lahan'),
+            'lahan_aktif' => Pertanian::where('pemilik_id', $pemilikId)
+                ->whereHas('memberships', fn ($query) => $query->where('status', 'disetujui'))
+                ->count(),
             'total_pekerja' => Pertanian::where('pemilik_id', $pemilikId)
                 ->whereHas('memberships', fn ($query) => $query->where('status', 'disetujui'))
                 ->withCount(['memberships as pekerja_count' => fn ($query) => $query->where('status', 'disetujui')])
@@ -94,5 +140,23 @@ class PertanianController extends Controller
 
         return redirect()->route('pemilik.pertanian.index')
             ->with('success', 'Data pertanian berhasil diperbarui.');
+    }
+
+    public function destroy(Request $request, Pertanian $pertanian): RedirectResponse
+    {
+        abort_unless($request->user()->isPemilik(), 403);
+        abort_unless($pertanian->pemilik_id === $request->user()->id, 404);
+
+        $terkait = $this->relatedDataLabels($pertanian);
+
+        if ($terkait !== []) {
+            return redirect()->route('pemilik.pertanian.index')
+                ->with('error', 'Pertanian tidak dapat dihapus karena masih memiliki data: '.implode(', ', $terkait).'.');
+        }
+
+        $pertanian->delete();
+
+        return redirect()->route('pemilik.pertanian.index')
+            ->with('success', 'Data pertanian berhasil dihapus.');
     }
 }

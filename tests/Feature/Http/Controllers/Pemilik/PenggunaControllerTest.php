@@ -32,6 +32,7 @@ class PenggunaControllerTest extends TestCase
         Membership::factory()->create([
             'pertanian_id' => $pertanian->id,
             'user_id' => $mandor->id,
+            'status' => 'disetujui',
         ]);
         $orangLain = User::factory()->pekerja()->create(['name' => 'Pekerja Asing']);
 
@@ -41,6 +42,24 @@ class PenggunaControllerTest extends TestCase
             ->assertOk()
             ->assertSee('Mandor Bersama')
             ->assertDontSee('Pekerja Asing');
+    }
+
+    public function test_does_not_show_a_member_with_a_pending_membership(): void
+    {
+        $pemilik = User::factory()->pemilik()->create();
+        $pertanian = Pertanian::factory()->create(['pemilik_id' => $pemilik->id]);
+        $calonMandor = User::factory()->mandor()->create(['name' => 'Calon Mandor Menunggu']);
+        Membership::factory()->create([
+            'pertanian_id' => $pertanian->id,
+            'user_id' => $calonMandor->id,
+            'status' => 'menunggu',
+        ]);
+
+        $response = $this->actingAs($pemilik)->get(route('pemilik.pengguna.index'));
+
+        $response
+            ->assertOk()
+            ->assertDontSee('Calon Mandor Menunggu');
     }
 
     public function test_redirects_guests_to_login(): void
@@ -68,6 +87,7 @@ class PenggunaControllerTest extends TestCase
         Membership::factory()->create([
             'pertanian_id' => $pertanian->id,
             'user_id' => $mandor->id,
+            'status' => 'disetujui',
         ]);
 
         $response = $this->actingAs($pemilik)->put(route('pemilik.pengguna.update', $mandor), [
@@ -95,6 +115,7 @@ class PenggunaControllerTest extends TestCase
         Membership::factory()->create([
             'pertanian_id' => $pertanian->id,
             'user_id' => $mandor->id,
+            'status' => 'disetujui',
         ]);
         $emailDuplikat = User::factory()->pekerja()->create()->email;
         $namaAwal = $mandor->name;
@@ -125,5 +146,96 @@ class PenggunaControllerTest extends TestCase
         $response = $this->actingAs($pemilik)->get(route('pemilik.pengguna.show', $pekerja));
 
         $response->assertNotFound();
+    }
+
+    public function test_allows_the_owner_to_update_their_own_profile_without_changing_the_role(): void
+    {
+        $pemilik = User::factory()->pemilik()->create([
+            'name' => 'Pemilik Awal',
+            'username' => 'pemilik_awal',
+        ]);
+
+        $response = $this->actingAs($pemilik)->put(route('pemilik.pengguna.update', $pemilik), [
+            'name' => 'Pemilik Terbaru',
+            'username' => 'pemilik_terbaru',
+            'email' => $pemilik->email,
+            'phone' => '081111111111',
+            'role' => 'mandor',
+        ]);
+
+        $response->assertRedirect(route('pemilik.pengguna.index'));
+        $this->assertDatabaseHas('users', [
+            'id' => $pemilik->id,
+            'name' => 'Pemilik Terbaru',
+            'username' => 'pemilik_terbaru',
+            'phone' => '081111111111',
+            'role' => 'pemilik',
+        ]);
+    }
+
+    public function test_hides_the_role_field_when_the_owner_edits_their_own_account(): void
+    {
+        $pemilik = User::factory()->pemilik()->create();
+
+        $response = $this->actingAs($pemilik)->get(route('pemilik.pengguna.edit', $pemilik));
+
+        $response
+            ->assertOk()
+            ->assertDontSee('name="role"', false);
+    }
+
+    public function test_prevents_the_owner_from_deleting_their_own_account(): void
+    {
+        $pemilik = User::factory()->pemilik()->create();
+
+        $response = $this->actingAs($pemilik)->delete(route('pemilik.pengguna.destroy', $pemilik));
+
+        $response->assertForbidden();
+        $this->assertDatabaseHas('users', ['id' => $pemilik->id]);
+    }
+
+    public function test_rejects_promoting_a_farm_member_to_owner(): void
+    {
+        $pemilik = User::factory()->pemilik()->create();
+        $pertanian = Pertanian::factory()->create(['pemilik_id' => $pemilik->id]);
+        $mandor = User::factory()->mandor()->create();
+        Membership::factory()->create([
+            'pertanian_id' => $pertanian->id,
+            'user_id' => $mandor->id,
+            'status' => 'disetujui',
+        ]);
+
+        $response = $this->actingAs($pemilik)->put(route('pemilik.pengguna.update', $mandor), [
+            'name' => $mandor->name,
+            'username' => $mandor->username,
+            'email' => $mandor->email,
+            'phone' => $mandor->phone,
+            'role' => 'pemilik',
+        ]);
+
+        $response->assertSessionHasErrors('role');
+        $this->assertSame('mandor', $mandor->fresh()->role);
+    }
+
+    public function test_deletes_a_farm_member_after_confirmation_prompt_is_rendered(): void
+    {
+        $pemilik = User::factory()->pemilik()->create();
+        $pertanian = Pertanian::factory()->create(['pemilik_id' => $pemilik->id]);
+        $pekerja = User::factory()->pekerja()->create(['name' => 'Pekerja Akan Dihapus']);
+        Membership::factory()->create([
+            'pertanian_id' => $pertanian->id,
+            'user_id' => $pekerja->id,
+            'status' => 'disetujui',
+        ]);
+
+        $indexResponse = $this->actingAs($pemilik)->get(route('pemilik.pengguna.index'));
+        $indexResponse
+            ->assertOk()
+            ->assertSee('return confirm', false);
+
+        $response = $this->actingAs($pemilik)->delete(route('pemilik.pengguna.destroy', $pekerja));
+
+        $response->assertRedirect(route('pemilik.pengguna.index'));
+        $this->assertDatabaseMissing('users', ['id' => $pekerja->id]);
     }
 }

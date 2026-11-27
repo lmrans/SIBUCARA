@@ -35,6 +35,13 @@ class RegisteredUserController extends Controller
                 'max:255',
             ],
 
+            'username' => [
+                'required',
+                'string',
+                'max:100',
+                'unique:users,username',
+            ],
+
             'email' => [
                 'required',
                 'string',
@@ -74,6 +81,7 @@ class RegisteredUserController extends Controller
         // Simpan pengguna baru
         $user = User::create([
             'name' => $validated['name'],
+            'username' => $validated['username'],
             'email' => $validated['email'],
             'phone' => $validated['phone'],
             'role' => $validated['role'],
